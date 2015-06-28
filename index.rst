@@ -88,11 +88,15 @@ Used to create a new Collection Item in the specified user's Collection.
 
     Either ``privatePosition`` or ``hostedPosition`` must be set.
 
+**Response (body)**
+    - ``itemID``: unique ID for the Collection Item.
+
 GET
 ^^^
 *Requires authorisation*
 
 **Response (body - list of objects)**
+    - ``itemID``;
     - ``name``;
     - ``card``;
     - ``printing``;
@@ -103,6 +107,15 @@ GET
     - ``condition``;
     - ``privatePosition``;
     - ``hostedPosition``.
+
+Collection Item: ``/user/[username]/collection/[itemID]``
+---------------------------------------------------------
+
+DELETE
+^^^^^^
+*Requires authorisation*
+
+No request body required, no response body returned.
 
 Indices and tables
 ==================
