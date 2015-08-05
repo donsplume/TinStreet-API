@@ -68,8 +68,10 @@ GET
     - ``printingNum``: the printing number of the card within the expansion;
     - ``image``: a full URL for an image of the printing.
 
-Collection: ``/user/[username]/collection``
--------------------------------------------
+Collection
+----------
+``/user/[username]/collection``
+
 POST
 ^^^^
 *Requires authorisation*
@@ -108,8 +110,35 @@ GET
     - ``privatePosition``;
     - ``hostedPosition``.
 
-Collection Item: ``/user/[username]/collection/[itemID]``
----------------------------------------------------------
+Collection Item
+---------------
+``/user/[username]/collection/[itemID]``
+
+PUT
+^^^
+*Requires authorisation*
+
+Used to update the specified Item.
+
+**Request (body)**
+    - ``card`` *string*: the card code;
+    - ``printing`` *string, optional*: the printing code;
+    - ``instrument`` *string, optional*: the instrument code;
+    - ``expCode`` *string, optional*: the expansion code;
+    - ``foil`` *integer, optional*: whether the Item represents a foil printing (1) or not (0);
+    - ``condition`` *string, optional*: the condition code;
+    - ``privatePosition`` *integer, conditional (note 1)*;
+    - ``hostedPosition`` *integer, conditional (note 1)*.
+
+(1) Either ``privatePosition`` or ``hostedPosition`` must be set.
+
+Each field can be set to the existing or updated value. Note, any unset fields will be treated as a null value.
+
+**Validation and Processing**
+
+If the instrument code is supplied, a lookup of condition, printing, foil, card and expansion is performed and compared against any supplied values for ``condition``, ``printing``, ``foil``, ``card`` or ``expCode`` respectively - any inconsistencies will generate an error. The same applies if instead the printing code is supplied, but for ``foil``, ``card`` and ``expCode`` only.
+
+
 
 DELETE
 ^^^^^^
