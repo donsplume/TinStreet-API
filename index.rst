@@ -54,19 +54,26 @@ Used to request the details of the authenticated user's login session. Client ap
     - ``sessionId``: unique ID representing the current login session;
     - ``expiry``: the time at which the session will be unavailable.
 
-Printing: ``/printing``
------------------------
+Instrument
+----------
+ ``/instrument``
+
 GET
 ^^^
 **Request (query string)**
-    - ``name``: partial name of a card with which to search. Must be three or more characters.
+    - ``name`` *string*: partial name of a card with which to search. Must be three or more characters.
 
 **Response (body - list of objects)**
-    - ``name``: the full card name;
-    - ``code``: a unique printing code, a combination of card and expansion, and printing number where necessary;
-    - ``expName``: the full expansion name;
-    - ``printingNum``: the printing number of the card within the expansion;
-    - ``image``: a full URL for an image of the printing.
+    - ``instrumentCode`` *string*: a unique instrument code, a combination of printing and condition;
+    - ``condition`` *string*: the condition code for the instrument;
+    - ``printingCode`` *string*: the code for the instrument's printing. A combination of card, expansion, and foil and printing number where necessary;
+    - ``expCode`` *string*: the code for the printing's expansion;
+    - ``expName`` *string*: the full expansion name of the printing;
+    - ``foil`` *integer*: whether the printing is foil (1) or not (0);
+    - ``printingNum`` *string*: the printing number of the card within the expansion;
+    - ``image`` *string*: a full URL for an image of the printing;
+    - ``cardCode`` *string*: the code for the printing's underlying card;
+    - ``name`` *string*: the full card name.
 
 Collection
 ----------
