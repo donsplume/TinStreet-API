@@ -145,13 +145,30 @@ Each field can be set to the existing or updated value. Note, any unset fields w
 
 If the instrument code is supplied, a lookup of condition, printing, foil, card and expansion is performed and compared against any supplied values for ``condition``, ``printing``, ``foil``, ``card`` or ``expCode`` respectively - any inconsistencies will generate an error. The same applies if instead the printing code is supplied, but for ``foil``, ``card`` and ``expCode`` only.
 
-
-
 DELETE
 ^^^^^^
 *Requires authorisation*
 
 No request body required, no response body returned.
+
+Album
+-----
+``/user/[username]/album`` (for POST)
+
+An album is similar to a Collection, but a user may have multiple albums and does not need to hold a position in any of the items within an album.
+
+POST
+^^^^
+*Requires authorisation*
+
+Used to create a new album for the given user.
+
+**Request (body)**
+    - ``name`` *string*: the name for the new album, which must be unique for the user.
+
+**Response (body)**
+    - ``name`` *string*: the new album's name;
+    - ``albumId`` *string*: a unique ID for the album, to be used in subsequent requests.
 
 Indices and tables
 ==================
