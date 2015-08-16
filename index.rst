@@ -153,14 +153,14 @@ No request body required, no response body returned.
 
 Album
 -----
-``/user/[username]/album`` (for POST)
+``/user/[username]/album/``
+
+*Requires authorisation*
 
 An album is similar to a Collection, but a user may have multiple albums and does not need to hold a position in any of the items within an album.
 
 POST
 ^^^^
-*Requires authorisation*
-
 Used to create a new album for the given user.
 
 **Request (body)**
@@ -168,7 +168,40 @@ Used to create a new album for the given user.
 
 **Response (body)**
     - ``name`` *string*: the new album's name;
-    - ``albumId`` *string*: a unique ID for the album, to be used in subsequent requests.
+    - ``albumID`` *string*: a unique ID for the album, to be used in subsequent requests.
+
+GET
+^^^
+Used to read all available albums for the given user.
+
+**Response (body - list of objects)**
+    - ``name`` *string*: the album's name;
+    - ``albumID`` *string*: the unique ID for the album.
+
+Album Item
+----------
+``/user/[username]/album/[albumID]/``
+
+*Requires authorisation*
+
+POST
+^^^^
+
+Used to create a new album item in the album of the given ID.
+
+**Request (body)**
+    - ``card`` *string*: the card code;
+    - ``printing`` *string, optional*: the printing code;
+    - ``instrument`` *string, optional*: the instrument code;
+    - ``expCode`` *string, optional*: the expansion code;
+    - ``foil`` *integer, optional*: whether the Item represents a foil printing (1) or not (0);
+    - ``condition`` *string, optional*: the condition code;
+    - ``privatePosition`` *integer, optional*;
+    - ``hostedPosition`` *integer, optional*.
+
+**Validation and Processing**
+
+If the instrument code is supplied, a lookup of condition, printing, foil, card and expansion is performed and compared against any supplied values for ``condition``, ``printing``, ``foil``, ``card`` or ``expCode`` respectively - any inconsistencies will generate an error. The same applies if instead the printing code is supplied, but for ``foil``, ``card`` and ``expCode`` only.
 
 Indices and tables
 ==================
