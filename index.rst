@@ -196,8 +196,7 @@ Used to create a new album item in the album of the given ID.
     - ``expCode`` *string, optional*: the expansion code;
     - ``foil`` *integer, optional*: whether the Item represents a foil printing (1) or not (0);
     - ``condition`` *string, optional*: the condition code;
-    - ``privatePosition`` *integer, optional*;
-    - ``hostedPosition`` *integer, optional*.
+    - ``quantity`` *integer*: a speculative quantity for the given item, must be greater than zero.
 
 **Validation and Processing**
 
